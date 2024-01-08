@@ -1,0 +1,30 @@
+{
+  "name": "tailwind-util-class-names",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/tailwind/util-class-names/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/tailwind/util-class-names",
+        "main": "libs/tailwind/util-class-names/src/index.ts",
+        "tsConfig": "libs/tailwind/util-class-names/tsconfig.lib.json",
+        "assets": ["libs/tailwind/util-class-names/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../../coverage/libs/tailwind/util-class-names"
+      }
+    }
+  },
+  "tags": []
+}
