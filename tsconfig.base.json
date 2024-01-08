@@ -19,6 +19,7 @@
       "@nofun/tailwind-util-class-names": [
         "libs/tailwind/util-class-names/src/index.ts"
       ],
+      "@nofun/tailwind-util-config": ["libs/tailwind/util-config/src/index.ts"],
       "@nofun/ui-components": ["libs/ui-components/src/index.ts"]
     }
   },
