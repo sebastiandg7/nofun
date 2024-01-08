@@ -12,6 +12,7 @@
   },
   "aliases": {
     "components": "@nofun/ui-components",
-    "utils": "@nofun/tailwind-util-class-names"
+    "utils": "@nofun/tailwind-util-class-names",
+    "ui": "libs/ui-components/src/lib/components"
   }
 }
