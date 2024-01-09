@@ -38,14 +38,14 @@
       "short_name": "Papelito",
       "description": "Make your team guess as many words as possible.",
       "url": "/papelito?source=pwa",
-      "icons": [{ "src": "/images/today.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/images/spy-icon.png", "sizes": "192x192" }]
     },
     {
       "name": "Dice Game",
       "short_name": "Spy",
       "description": "Roll the dice and take your chances.",
       "url": "/dice?source=pwa",
-      "icons": [{ "src": "/images/today.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/images/spy-icon.png", "sizes": "192x192" }]
     }
   ]
 }
