@@ -1,0 +1,30 @@
+{
+  "name": "client-util-config",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/client/util-config/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/client/util-config",
+        "main": "apps/client/util-config/src/index.ts",
+        "tsConfig": "apps/client/util-config/tsconfig.lib.json",
+        "assets": ["apps/client/util-config/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../../coverage/apps/client/util-config"
+      }
+    }
+  },
+  "tags": []
+}

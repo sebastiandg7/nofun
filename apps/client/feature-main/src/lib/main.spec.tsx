@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import FeatureSpy from './feature-spy';
+import Main from './main';
 
-describe('FeatureSpy', () => {
+describe('FeatureMain', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<FeatureSpy />);
+    const { baseElement } = render(<Main />);
     expect(baseElement).toBeTruthy();
   });
 });
