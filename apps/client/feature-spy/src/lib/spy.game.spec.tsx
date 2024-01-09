@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import FeatureSpy from './feature-spy';
+import { SpyGame } from './spy.game';
 
 describe('FeatureSpy', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<FeatureSpy />);
+    const { baseElement } = render(<SpyGame />);
     expect(baseElement).toBeTruthy();
   });
 });

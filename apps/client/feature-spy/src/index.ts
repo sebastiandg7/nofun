@@ -1,1 +1,1 @@
-export * from './lib/feature-spy';
+export { SpyGame } from './lib/spy.game';

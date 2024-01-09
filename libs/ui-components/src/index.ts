@@ -1,3 +1,6 @@
+// Icons
+export { Icons } from './lib/icons/icons';
+
 // Accordion
 export {
   Accordion,

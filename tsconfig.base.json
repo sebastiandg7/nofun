@@ -16,6 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@nofun/client-feature-spy": ["apps/client/feature-spy/src/index.ts"],
+      "@nofun/client-util-config": ["apps/client/util-config/src/index.ts"],
+      "@nofun/feature-main": ["apps/client/feature-main/src/index.ts"],
       "@nofun/tailwind-util-class-names": [
         "libs/tailwind/util-class-names/src/index.ts"
       ],
