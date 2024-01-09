@@ -1,0 +1,46 @@
+{
+  "name": "Nofun Games",
+  "short_name": "Nofun",
+  "description": "On the go games to play with friends",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3367D6",
+  "background_color": "#3367D6",
+  "shortcuts": [
+    {
+      "name": "Spy Game",
+      "short_name": "Spy",
+      "description": "Discover the impostor before it's too late.",
+      "url": "/spy?source=pwa",
+      "icons": [{ "src": "/images/today.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Papelito Game",
+      "short_name": "Papelito",
+      "description": "Make your team guess as many words as possible.",
+      "url": "/papelito?source=pwa",
+      "icons": [{ "src": "/images/today.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Dice Game",
+      "short_name": "Spy",
+      "description": "Roll the dice and take your chances.",
+      "url": "/dice?source=pwa",
+      "icons": [{ "src": "/images/today.png", "sizes": "192x192" }]
+    }
+  ]
+}
