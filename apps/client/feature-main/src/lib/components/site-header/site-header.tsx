@@ -1,10 +1,10 @@
+import { siteConfig } from '@nofun/client-util-config';
 import { cn } from '@nofun/tailwind-util-class-names';
 import { Icons, buttonVariants } from '@nofun/ui-components';
-import { siteConfig } from '@nofun/client-util-config';
 import { Link } from 'react-router-dom';
-import { MainNav } from '../navigation/components/main-nav';
-import { MobileNav } from '../navigation/components/mobile-nav';
-import { UserNav } from '../navigation/components/user-nav';
+import { MainNav } from '../../navigation/components/main-nav';
+import { MobileNav } from '../../navigation/components/mobile-nav';
+import { UIModeToggle } from '../ui-mode-toggle/ui-mode-toggle';
 
 export function SiteHeader() {
   return (
@@ -47,7 +47,7 @@ export function SiteHeader() {
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
-            <UserNav />
+            <UIModeToggle />
           </nav>
         </div>
       </div>

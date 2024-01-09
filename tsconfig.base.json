@@ -15,14 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nofun/client-feature-dice": ["apps/client/feature-dice/src/index.ts"],
+      "@nofun/client-feature-main": ["apps/client/feature-main/src/index.ts"],
+      "@nofun/client-feature-papelito": [
+        "apps/client/feature-papelito/src/index.ts"
+      ],
       "@nofun/client-feature-spy": ["apps/client/feature-spy/src/index.ts"],
       "@nofun/client-util-config": ["apps/client/util-config/src/index.ts"],
-      "@nofun/feature-main": ["apps/client/feature-main/src/index.ts"],
       "@nofun/tailwind-util-class-names": [
         "libs/tailwind/util-class-names/src/index.ts"
       ],
       "@nofun/tailwind-util-config": ["libs/tailwind/util-config/src/index.ts"],
-      "@nofun/ui-components": ["libs/ui-components/src/index.ts"]
+      "@nofun/ui-components": ["libs/ui-components/src/index.ts"],
+      "@nofun/util-ui-mode": ["libs/util-ui-mode/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

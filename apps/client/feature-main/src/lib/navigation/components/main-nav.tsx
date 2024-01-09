@@ -38,27 +38,6 @@ export function MainNav() {
         >
           Settings
         </NavLink>
-        <NavLink
-          to="/login"
-          className={({ isActive, isPending }) =>
-            cn(
-              'transition-colors hover:text-foreground/80',
-              pathname?.startsWith('/themes')
-                ? 'text-foreground'
-                : 'text-foreground/60'
-            )
-          }
-        >
-          Login
-        </NavLink>
-        <NavLink
-          to={siteConfig.links.github}
-          className={cn(
-            'hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block'
-          )}
-        >
-          GitHub
-        </NavLink>
       </nav>
     </div>
   );
