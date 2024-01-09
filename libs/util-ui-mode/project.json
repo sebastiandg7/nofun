@@ -1,0 +1,30 @@
+{
+  "name": "util-ui-mode",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/util-ui-mode/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/util-ui-mode",
+        "main": "libs/util-ui-mode/src/index.ts",
+        "tsConfig": "libs/util-ui-mode/tsconfig.lib.json",
+        "assets": ["libs/util-ui-mode/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../coverage/libs/util-ui-mode"
+      }
+    }
+  },
+  "tags": []
+}
