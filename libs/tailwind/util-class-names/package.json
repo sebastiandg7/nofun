@@ -2,6 +2,8 @@
   "name": "@nofun/tailwind-util-class-names",
   "version": "0.0.1",
   "dependencies": {
+    "clsx": "*",
+    "tailwind-merge": "*",
     "tslib": "^2.3.0"
   },
   "type": "commonjs",

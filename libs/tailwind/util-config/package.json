@@ -2,6 +2,7 @@
   "name": "@nofun/tailwind-util-config",
   "version": "0.0.1",
   "dependencies": {
+    "tailwindcss-animate": "*",
     "tslib": "^2.3.0"
   },
   "type": "commonjs",

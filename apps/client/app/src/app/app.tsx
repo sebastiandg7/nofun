@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Button, buttonVariants } from '@nofun/ui-components';
-import styles from './app.module.css';
 
 import NxWelcome from './nx-welcome';
 
