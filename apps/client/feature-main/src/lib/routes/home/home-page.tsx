@@ -7,6 +7,7 @@ type GameData = {
   description: string;
   icon: React.ReactNode;
   link: string;
+  commingSoon?: boolean;
 };
 
 const games: GameData[] = [
@@ -15,18 +16,21 @@ const games: GameData[] = [
     description: "Discover the impostor before it's too late.",
     icon: <SpyIcon className="h-16 w-16 text-black dark:text-white" />,
     link: 'spy',
+    commingSoon: false,
   },
   {
     title: 'Papelito',
     description: 'Make your team guess as many words as possible.',
     icon: <WalletCardsIcon className="h-16 w-16 text-black dark:text-white" />,
     link: 'papelito',
+    commingSoon: true,
   },
   {
     title: 'Dice',
     description: 'Roll the dice and take your chances.',
     icon: <Dice1Icon className="h-16 w-16 text-foreground" />,
     link: 'dice',
+    commingSoon: true,
   },
 ];
 
@@ -49,6 +53,7 @@ export function HomePage() {
             description={game.description}
             icon={game.icon}
             link={game.link}
+            commingSoon={game.commingSoon}
           />
         ))}
       </section>
