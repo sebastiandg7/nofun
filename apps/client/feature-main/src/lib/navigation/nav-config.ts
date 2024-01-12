@@ -24,64 +24,34 @@ export interface NavConfig {
 
 export const navConfig: NavConfig = {
   mainNav: [
-    {
-      title: 'Settings',
-      href: '/settings',
-    },
-    {
-      title: 'GitHub',
-      href: 'https://github.com/divetool',
-      external: true,
-    },
-    {
-      title: 'Twitter',
-      href: 'https://twitter.com/divetool',
-      external: true,
-    },
+    // {
+    //   title: 'GitHub',
+    //   href: 'https://github.com/divetool',
+    //   external: true,
+    // },
+    // {
+    //   title: 'Twitter',
+    //   href: 'https://twitter.com/divetool',
+    //   external: true,
+    // },
   ],
   sidebarNav: [
     {
-      title: 'Getting Started',
+      title: 'Games',
       items: [
         {
-          title: 'Installation',
-          href: '/docs/installation',
+          title: 'Spy',
+          href: '/spy',
           items: [],
         },
         {
-          title: 'CLI',
-          href: '/docs/cli',
-          items: [],
-        },
-      ],
-    },
-    {
-      title: 'Settings',
-      href: '/settings',
-      items: [
-        {
-          title: 'Profile',
-          href: '/settings/profile',
+          title: 'Papelito',
+          href: '/papelito',
           items: [],
         },
         {
-          title: 'Account',
-          href: '/settings/account',
-          items: [],
-        },
-        {
-          title: 'Appearance',
-          href: '/settings/appearance',
-          items: [],
-        },
-        {
-          title: 'Notifications',
-          href: '/settings/notifications',
-          items: [],
-        },
-        {
-          title: 'Display',
-          href: '/settings/display',
+          title: 'Dice',
+          href: '/dice',
           items: [],
         },
       ],
