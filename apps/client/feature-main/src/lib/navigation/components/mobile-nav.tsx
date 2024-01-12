@@ -12,6 +12,7 @@ import { ViewVerticalIcon } from '@radix-ui/react-icons';
 import * as React from 'react';
 import { Link, LinkProps, useNavigate } from 'react-router-dom';
 import { navConfig } from '../nav-config';
+import { MenuIcon } from 'lucide-react';
 
 interface MobileLinkProps extends LinkProps {
   onOpenChange?: (open: boolean) => void;
@@ -52,7 +53,7 @@ export function MobileNav() {
           variant="ghost"
           className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
         >
-          <ViewVerticalIcon className="h-5 w-5" />
+          <MenuIcon className="h-5 w-5" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
