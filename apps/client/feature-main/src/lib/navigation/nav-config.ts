@@ -24,11 +24,11 @@ export interface NavConfig {
 
 export const navConfig: NavConfig = {
   mainNav: [
-    // {
-    //   title: 'GitHub',
-    //   href: 'https://github.com/divetool',
-    //   external: true,
-    // },
+    {
+      title: 'Home',
+      href: '/',
+      external: false,
+    },
     // {
     //   title: 'Twitter',
     //   href: 'https://twitter.com/divetool',
