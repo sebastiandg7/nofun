@@ -1,3 +1,4 @@
+import { siteConfig } from '@nofun/client-util-config';
 import { cn } from '@nofun/tailwind-util-class-names';
 import {
   Button,
@@ -7,12 +8,10 @@ import {
   SheetContent,
   SheetTrigger,
 } from '@nofun/ui-components';
-import { siteConfig } from '@nofun/client-util-config';
-import { ViewVerticalIcon } from '@radix-ui/react-icons';
+import { MenuIcon } from 'lucide-react';
 import * as React from 'react';
 import { Link, LinkProps, useNavigate } from 'react-router-dom';
 import { navConfig } from '../nav-config';
-import { MenuIcon } from 'lucide-react';
 
 interface MobileLinkProps extends LinkProps {
   onOpenChange?: (open: boolean) => void;
