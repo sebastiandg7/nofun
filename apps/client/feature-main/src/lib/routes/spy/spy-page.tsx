@@ -4,4 +4,4 @@ function SpyPage() {
   return <SpyGame />;
 }
 
-export { SpyPage };
+export { SpyPage as Component };

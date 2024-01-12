@@ -4,4 +4,4 @@ function DicePage() {
   return <DiceGame />;
 }
 
-export { DicePage };
+export { DicePage as Component };

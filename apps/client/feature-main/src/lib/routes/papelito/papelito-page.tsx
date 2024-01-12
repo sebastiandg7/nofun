@@ -4,4 +4,4 @@ function PapelitoPage() {
   return <PapelitoGame />;
 }
 
-export { PapelitoPage };
+export { PapelitoPage as Component };
