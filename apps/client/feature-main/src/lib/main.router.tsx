@@ -1,8 +1,5 @@
 import type { RouteObject } from 'react-router-dom';
-import { SpyPage } from './routes/spy/spy-page';
 import { HomePage } from './routes/home/home-page';
-import { PapelitoPage } from './routes/papelito/papelito-page';
-import { DicePage } from './routes/dice/dice-page';
 
 export const mainRouter: RouteObject[] = [
   {
@@ -11,15 +8,15 @@ export const mainRouter: RouteObject[] = [
   },
   {
     path: '/spy',
-    element: <SpyPage />,
+    lazy: () => import('./routes/spy/spy-page'),
   },
   {
     path: '/papelito',
-    element: <PapelitoPage />,
+    lazy: () => import('./routes/papelito/papelito-page'),
   },
   {
     path: '/dice',
-    element: <DicePage />,
+    lazy: () => import('./routes/dice/dice-page'),
   },
   {
     path: '/about',
