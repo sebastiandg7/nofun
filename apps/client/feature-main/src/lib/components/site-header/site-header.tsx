@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { MainNav } from '../../navigation/components/main-nav';
 import { MobileNav } from '../../navigation/components/mobile-nav';
 import { UIModeToggle } from '../ui-mode-toggle/ui-mode-toggle';
+import { LanguageToggle } from '../language-toggle/language-toggle';
 
 export function SiteHeader() {
   return (
@@ -17,7 +18,6 @@ export function SiteHeader() {
             <CommandMenu />
           </div> */}
           <nav className="flex items-center">
-            
             <Link to={siteConfig.links.github} target="_blank" rel="noreferrer">
               <div
                 className={cn(
@@ -31,23 +31,7 @@ export function SiteHeader() {
                 <span className="sr-only">GitHub</span>
               </div>
             </Link>
-            <Link
-              to={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={cn(
-                  buttonVariants({
-                    variant: 'ghost',
-                  }),
-                  'w-9 px-0'
-                )}
-              >
-                <Icons.Twitter className="h-4 w-4 fill-current" />
-                <span className="sr-only">Twitter</span>
-              </div>
-            </Link>
+            <LanguageToggle />
             <UIModeToggle />
           </nav>
         </div>

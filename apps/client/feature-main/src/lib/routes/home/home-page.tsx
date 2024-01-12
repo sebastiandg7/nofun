@@ -1,6 +1,7 @@
 import { Button } from '@nofun/ui-components';
 import React from 'react';
 import { GameCard } from './components/game-card';
+import { useTranslation } from 'react-i18next';
 
 type GameData = {
   title: string;
@@ -35,11 +36,13 @@ const games: GameData[] = [
 ];
 
 export function HomePage() {
+  const { t } = useTranslation();
+
   return (
     <main className="flex flex-col items-center justify-center h-full">
       <header className="flex flex-col items-center justify-center py-8">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
-          Nofun Games
+          {t('home.title')}
         </h1>
         <p className="mt-2 text-gray-600 dark:text-gray-400">
           Choose a game to start the fun!

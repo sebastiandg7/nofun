@@ -1,0 +1,30 @@
+{
+  "name": "util-translations",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/i18n/util-translations/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/i18n/util-translations",
+        "main": "libs/i18n/util-translations/src/index.ts",
+        "tsConfig": "libs/i18n/util-translations/tsconfig.lib.json",
+        "assets": ["libs/i18n/util-translations/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../../coverage/libs/i18n/util-translations"
+      }
+    }
+  },
+  "tags": []
+}
