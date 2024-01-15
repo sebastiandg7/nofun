@@ -6,9 +6,9 @@ export interface MainProps {}
 
 export function Main(props: MainProps) {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen flex flex-col">
       <SiteHeader />
-      <section className="bg-background h-full">
+      <section className="bg-background h-full flex-1 flex flex-col">
         <Outlet />
       </section>
     </main>

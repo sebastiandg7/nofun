@@ -28,7 +28,8 @@
       "@nofun/tailwind-util-config": ["libs/tailwind/util-config/src/index.ts"],
       "@nofun/ui-components": ["libs/ui-components/src/index.ts"],
       "@nofun/util-translations": ["libs/i18n/util-translations/src/index.ts"],
-      "@nofun/util-ui-mode": ["libs/util-ui-mode/src/index.ts"]
+      "@nofun/util-ui-mode": ["libs/util-ui-mode/src/index.ts"],
+      "@nofun/util-words": ["libs/util-words/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
