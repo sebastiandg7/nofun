@@ -1,9 +1,7 @@
 {
-  "name": "@nofun/tailwind-util-config",
+  "name": "@nofun/util-words",
   "version": "0.0.1",
   "dependencies": {
-    "tailwindcss": "*",
-    "tailwindcss-animate": "*",
     "tslib": "^2.3.0"
   },
   "type": "commonjs",

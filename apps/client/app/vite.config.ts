@@ -18,7 +18,14 @@ export default defineConfig({
     host: 'localhost',
   },
 
-  plugins: [react(), nxViteTsPaths()],
+  plugins: [
+    react({
+      babel: {
+        presets: ['jotai/babel/preset'],
+      },
+    }),
+    nxViteTsPaths(),
+  ],
 
   // Uncomment this if you are using workers.
   // worker: {
@@ -27,6 +34,7 @@ export default defineConfig({
 
   build: {
     outDir: '../../../dist/client',
+    emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,

@@ -1,3 +1,5 @@
+// [START: Shadcn UI Components]
+
 // Icons
 export { Icons } from './lib/icons/icons';
 
@@ -305,3 +307,13 @@ export {
   TooltipContent,
   TooltipProvider,
 } from './lib/components/tooltip';
+
+// [END: Shadcn UI Components]
+
+// [Custom Components]
+
+export {
+  FlipCard,
+  FlipCardFront,
+  FlipCardBack,
+} from './lib/components/flip-card';
