@@ -34,6 +34,7 @@ export default defineConfig({
 
   build: {
     outDir: '../../../dist/client',
+    emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,

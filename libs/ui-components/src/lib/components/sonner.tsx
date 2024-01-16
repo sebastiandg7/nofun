@@ -1,14 +1,14 @@
-import { useTheme } from 'next-themes';
+import { useUIMode } from '@nofun/util-ui-mode';
 import { Toaster as Sonner } from 'sonner';
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
 const SonnerToaster = ({ ...props }: ToasterProps) => {
-  const { theme = 'system' } = useTheme();
+  const { uiMode = 'system' } = useUIMode();
 
   return (
     <Sonner
-      theme={theme as ToasterProps['theme']}
+      theme={uiMode as ToasterProps['theme']}
       className="toaster group"
       toastOptions={{
         classNames: {

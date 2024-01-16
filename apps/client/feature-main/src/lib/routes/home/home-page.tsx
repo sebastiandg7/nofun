@@ -18,7 +18,7 @@ const games: GameData[] = [
     description: "Discover the impostor before it's too late.",
     icon: <Icons.Spy className="h-16 w-16 text-black dark:text-white" />,
     link: 'spy',
-    commingSoon: false,
+    commingSoon: process.env.NODE_ENV === 'production',
   },
   {
     title: 'Papelito',
