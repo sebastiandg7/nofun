@@ -1,3 +1,30 @@
+const plugin = require('tailwindcss/plugin');
+
+const backfaceVisibility = plugin(function ({ addUtilities }) {
+  addUtilities({
+    '.backface-visible': {
+      'backface-visibility': 'visible',
+    },
+    '.backface-hidden': {
+      'backface-visibility': 'hidden',
+    },
+  });
+});
+
+const elementFlip = plugin(function ({ addUtilities }) {
+  addUtilities({
+    '.my-rotate-y-180': {
+      transform: 'rotateY(180deg)',
+    },
+    '.preserve-3d': {
+      transformStyle: 'preserve-3d',
+    },
+    '.perspective': {
+      perspective: '1000px',
+    },
+  });
+});
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
@@ -77,5 +104,5 @@ module.exports = {
       }),
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), backfaceVisibility, elementFlip],
 };
