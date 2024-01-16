@@ -6,7 +6,11 @@ import {
 } from '@nofun/ui-components';
 import { HelpCircle } from 'lucide-react';
 import { useState } from 'react';
-import { GameSession } from '../../../+state/game-session.state';
+import {
+  GameSession,
+  spyGameSessionAtom,
+} from '../../../+state/game-session.state';
+import { useAtom } from 'jotai';
 
 function PlayerCardContent(props: {
   currentPlayer: string;
@@ -29,12 +33,9 @@ function PlayerCardContent(props: {
     </>
   );
 }
-export interface GameBoardProps {
-  gameSession: GameSession;
-}
 
-export function GameBoard(props: GameBoardProps) {
-  const { gameSession } = props;
+export function GameBoard() {
+  const [gameSession] = useAtom(spyGameSessionAtom);
 
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const currentPlayer = gameSession.players?.[currentPlayerIndex];
