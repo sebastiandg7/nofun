@@ -18,79 +18,34 @@ import {
 } from '@nofun/ui-components';
 import { WordCategory } from '@nofun/util-words';
 import { useAtom } from 'jotai';
-import {
-  Box,
-  Bus,
-  Cat,
-  CheckCircle,
-  ChefHat,
-  Dumbbell,
-  Flag,
-  Landmark,
-  NotebookPen,
-  Palette,
-  Popcorn,
-  Smile,
-  Trees,
-} from 'lucide-react';
+import { CheckCircle, NotebookPen } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { spyGameSettingsAtom } from '../../../+state/game-settings.state';
+import { categoriesConfig } from '../../../config/categories';
 import { SPY_NAMESPACE } from '../../../i18n/constants';
 
-const categories: Array<{ category: WordCategory; icon: React.ReactNode }> = [
-  {
-    category: WordCategory.Animals,
-    icon: <Cat className="h-4 w-4" />,
-  },
-  {
-    category: WordCategory.Colors,
-    icon: <Palette className="h-4 w-4" />,
-  },
-  {
-    category: WordCategory.Sports,
-    icon: <Dumbbell className="h-4 w-4" />,
-  },
-  {
-    category: WordCategory.Countries,
-    icon: <Flag className="h-4 w-4" />,
-  },
-  {
-    category: WordCategory.Objects,
-    icon: <Box className="h-4 w-4" />,
-  },
-  {
-    category: WordCategory.Transportation,
-    icon: <Bus className="h-4 w-4" />,
-  },
-  {
-    category: WordCategory.PublicPlaces,
-    icon: <Landmark className="h-4 w-4" />,
-  },
-  {
-    category: WordCategory.Nature,
-    icon: <Trees className="h-4 w-4" />,
-  },
-  {
-    category: WordCategory.Kitchen,
-    icon: <ChefHat className="h-4 w-4" />,
-  },
-  {
-    category: WordCategory.Beauty,
-    icon: <Smile className="h-4 w-4" />,
-  },
-  {
-    category: WordCategory.MoviesAndSeries,
-    icon: <Popcorn className="h-4 w-4" />,
-  },
+const supportedCategories: Array<WordCategory> = [
+  WordCategory.Animals,
+  WordCategory.Colors,
+  WordCategory.Sports,
+  WordCategory.Countries,
+  WordCategory.Objects,
+  WordCategory.Transportation,
+  WordCategory.PublicPlaces,
+  WordCategory.Nature,
+  WordCategory.Kitchen,
+  WordCategory.Beauty,
+  WordCategory.MoviesAndSeries,
 ];
 
 function CategoryToggle(props: {
   category: WordCategory;
-  icon: React.ReactNode;
   pressed: boolean;
   onPressedChange: (pressed: boolean) => void;
 }) {
-  const { category, icon, pressed, onPressedChange } = props;
+  const { category, pressed, onPressedChange } = props;
+  const { t } = useTranslation(SPY_NAMESPACE);
+  const categoryConfig = categoriesConfig[category];
   return (
     <Toggle
       variant="outline"
@@ -103,8 +58,8 @@ function CategoryToggle(props: {
         {pressed && (
           <CheckCircle className="h-4 w-4 absolute -top-1 -right-0.5" />
         )}
-        {icon}
-        <span className="ml-2">{category}</span>
+        <categoryConfig.icon />
+        <span className="ml-2">{t(categoryConfig.label)}</span>
       </div>
     </Toggle>
   );
@@ -178,17 +133,18 @@ export function WordCategoriesSettings() {
           </div>
           {!wordCategories.useAll && (
             <div className="grid grid-cols-2 gap-3 p-6">
-              {categories.map((category) => (
-                <CategoryToggle
-                  key={category.category}
-                  category={category.category}
-                  icon={category.icon}
-                  pressed={wordCategories.selected.includes(category.category)}
-                  onPressedChange={(pressed) =>
-                    onCategoryPressedChange(category.category, pressed)
-                  }
-                />
-              ))}
+              {supportedCategories.map((category) => {
+                return (
+                  <CategoryToggle
+                    key={category}
+                    category={category}
+                    pressed={wordCategories.selected.includes(category)}
+                    onPressedChange={(pressed) =>
+                      onCategoryPressedChange(category, pressed)
+                    }
+                  />
+                );
+              })}
             </div>
           )}
           <DrawerFooter>

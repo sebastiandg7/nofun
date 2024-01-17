@@ -11,6 +11,7 @@ import {
   spyGameSessionAtom,
 } from '../../../+state/game-session.state';
 import { useAtom } from 'jotai';
+import { categoriesConfig } from '../../../config/categories';
 
 function PlayerCardContent(props: {
   currentPlayer: string;
@@ -26,9 +27,16 @@ function PlayerCardContent(props: {
     );
   }
 
+  if (!gameSession.category) {
+    // TODO: Handle miss configuration of game session
+    return;
+  }
+
+  const categoryConfig = categoriesConfig[gameSession.category];
+
   return (
     <>
-      <span className="mb-4">{gameSession.category}</span>
+      <categoryConfig.icon className="w-8 h-8 mb-4" />
       <h1 className="text-xl font-semibold">{gameSession.word}</h1>
     </>
   );
@@ -40,19 +48,26 @@ export function GameBoard() {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const currentPlayer = gameSession.players?.[currentPlayerIndex];
 
+  const [cardFlipped, setCardFlipped] = useState(false);
+  const [cardFlippable, setCardFlippable] = useState(true);
+
   function onGameCardFlip() {
     if (!cardFlipped) {
       setCurrentPlayerIndex(
         (index) => (index + 1) % (gameSession.players?.length ?? 1)
       );
     }
+    setCardFlippable(true);
   }
 
   function onGameCardClick() {
+    if (!cardFlippable) {
+      return;
+    }
     setCardFlipped((flipped) => !flipped);
+    setCardFlippable(false);
   }
 
-  const [cardFlipped, setCardFlipped] = useState(false);
   return (
     <div className="flex flex-col justify-center items-center h-full flex-1">
       <span>{`Jugador ${currentPlayerIndex + 1}`}</span>
@@ -67,11 +82,6 @@ export function GameBoard() {
         </FlipCardFront>
         <FlipCardBack>
           <div className="text-center flex flex-col items-center justify-center h-full text-foreground p-10">
-            {/* <span className="mb-4">{gameSession.category}</span>
-            <h1 className="text-xl font-semibold">{gameSession.word}</h1>
-            <Button className="rounded-full absolute -bottom-20 delay-500 duration-1000 group-hover:bottom-20 scale-0 group-hover:scale-125 transition-all">
-              Watch Now
-            </Button> */}
             <PlayerCardContent
               currentPlayer={currentPlayer ?? ''}
               gameSession={gameSession}
