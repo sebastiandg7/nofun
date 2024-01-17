@@ -28,9 +28,12 @@ const defaultGameSettings: GameSettings = {
   },
 };
 
+const SPY_GAME_SETTINGS_STORAGE_KEY = 'spy.gameSettings';
+
 const persistentSpyGameSettingsAtom = atomWithStorage<GameSettings>(
-  'spy.gameSettings',
-  defaultGameSettings
+  SPY_GAME_SETTINGS_STORAGE_KEY,
+  JSON.parse(localStorage.getItem(SPY_GAME_SETTINGS_STORAGE_KEY) ?? 'null') ??
+    defaultGameSettings
 );
 persistentSpyGameSettingsAtom.debugLabel = 'persistentSpyGameSettingsAtom';
 
