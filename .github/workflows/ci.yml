@@ -21,7 +21,7 @@ jobs:
     uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.14.0
     with:
       main-branch-name: main
-      number-of-agents: 3
+      number-of-agents: 1
       init-commands: |
         pnpm exec nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
       parallel-commands: |
@@ -35,4 +35,4 @@ jobs:
     name: Nx Cloud - Agents
     uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.14.0
     with:
-      number-of-agents: 3
+      number-of-agents: 1
