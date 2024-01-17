@@ -12,17 +12,21 @@ import {
 } from '../../../+state/game-session.state';
 import { useAtom } from 'jotai';
 import { categoriesConfig } from '../../../config/categories';
+import { useTranslation } from 'react-i18next';
+import { SPY_NAMESPACE } from '../../../i18n/constants';
+import { cn } from '@nofun/tailwind-util-class-names';
 
 function PlayerCardContent(props: {
   currentPlayer: string;
   gameSession: GameSession;
 }) {
   const { currentPlayer, gameSession } = props;
+  const { t } = useTranslation(SPY_NAMESPACE);
   if (currentPlayer === 'spy') {
     return (
       <>
         <Icons.Spy className="w-14 h-14 mb-4" />
-        <span className="text-foreground text-lg">Spy</span>
+        <span className="text-foreground text-lg">{t('Eres espía')}</span>
       </>
     );
   }
@@ -44,6 +48,7 @@ function PlayerCardContent(props: {
 
 export function GameBoard() {
   const [gameSession] = useAtom(spyGameSessionAtom);
+  const { t } = useTranslation(SPY_NAMESPACE);
 
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const currentPlayer = gameSession.players?.[currentPlayerIndex];
@@ -70,9 +75,9 @@ export function GameBoard() {
 
   return (
     <div className="flex flex-col justify-center items-center h-full flex-1">
-      <span>{`Jugador ${currentPlayerIndex + 1}`}</span>
+      <span className="text-2xl">{`Jugador ${currentPlayerIndex + 1}`}</span>
       <FlipCard
-        className="max-w-xs w-56 h-72 group my-6"
+        className="max-w-xs w-48 h-72 group my-6"
         onClick={onGameCardClick}
         onFlipEnd={onGameCardFlip}
         flipped={cardFlipped}
@@ -81,7 +86,7 @@ export function GameBoard() {
           <HelpCircle className="w-24 h-24" />
         </FlipCardFront>
         <FlipCardBack>
-          <div className="text-center flex flex-col items-center justify-center h-full text-foreground p-10">
+          <div className="text-center flex flex-col items-center justify-center h-full text-foreground p-5">
             <PlayerCardContent
               currentPlayer={currentPlayer ?? ''}
               gameSession={gameSession}
@@ -89,7 +94,16 @@ export function GameBoard() {
           </div>
         </FlipCardBack>
       </FlipCard>
-      <span>{'Hello'}</span>
+      <span
+        className={cn(
+          'text-center px-10 opacity-0 transition-opacity duration-200 ease-in-out',
+          {
+            'opacity-100': cardFlipped && cardFlippable,
+          }
+        )}
+      >
+        {t('Toca para ocultar la tarjeta y pasa al siguiente jugador')}
+      </span>
     </div>
   );
 }
