@@ -12,36 +12,38 @@ type GameData = {
   commingSoon?: boolean;
 };
 
-const games: GameData[] = [
-  {
-    title: 'Spy',
-    description: "Discover the impostor before it's too late.",
-    icon: <Icons.Spy className="h-16 w-16 text-black dark:text-white" />,
-    link: 'spy',
-    commingSoon:
-      process.env.NODE_ENV === 'production' ||
-      localStorage.getItem('enableSpy') === 'true',
-  },
-  {
-    title: 'Papelito',
-    description: 'Make your team guess as many words as possible.',
-    icon: (
-      <Icons.WalletCards className="h-16 w-16 text-black dark:text-white" />
-    ),
-    link: 'papelito',
-    commingSoon: true,
-  },
-  {
-    title: 'Dice',
-    description: 'Roll the dice and take your chances.',
-    icon: <Icons.Dice1Icon className="h-16 w-16 text-foreground" />,
-    link: 'dice',
-    commingSoon: true,
-  },
-];
-
 export function HomePage() {
   const { t } = useTranslation(MAIN_NAMESPACE);
+
+  const games: GameData[] = [
+    {
+      title: 'Spy',
+      description: "Discover the impostor before it's too late.",
+      icon: <Icons.Spy className="h-16 w-16 text-black dark:text-white" />,
+      link: 'spy',
+      commingSoon: false,
+    },
+    {
+      title: 'Papelito',
+      description: 'Make your team guess as many words as possible.',
+      icon: (
+        <Icons.WalletCards className="h-16 w-16 text-black dark:text-white" />
+      ),
+      link: 'papelito',
+      commingSoon:
+        process.env.NODE_ENV === 'production' ||
+        localStorage.getItem('enablePapelito') === 'true',
+    },
+    {
+      title: 'Dice',
+      description: 'Roll the dice and take your chances.',
+      icon: <Icons.Dice1Icon className="h-16 w-16 text-foreground" />,
+      link: 'dice',
+      commingSoon:
+        process.env.NODE_ENV === 'production' ||
+        localStorage.getItem('enableDice') === 'true',
+    },
+  ];
 
   return (
     <main className="flex flex-col items-center justify-center h-full">

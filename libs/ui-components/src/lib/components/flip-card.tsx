@@ -5,10 +5,18 @@ import { cn } from '@nofun/tailwind-util-class-names';
 type FlipCardProps = React.ComponentPropsWithoutRef<typeof Card> & {
   flipped: boolean;
   speed?: 'fast' | 'normal' | 'slow';
+  onFlipEnd?: () => void;
 };
 const FlipCard = React.forwardRef<React.ElementRef<typeof Card>, FlipCardProps>(
   (
-    { className, children, flipped = false, speed = 'normal', ...props },
+    {
+      className,
+      children,
+      flipped = false,
+      speed = 'normal',
+      onFlipEnd,
+      ...props
+    },
     ref
   ) => (
     <Card
@@ -17,12 +25,16 @@ const FlipCard = React.forwardRef<React.ElementRef<typeof Card>, FlipCardProps>(
       {...props}
     >
       <div
-        className={cn('relative preserve-3d w-full h-full', {
-          'rotate-y-180': flipped,
-          'duration-500': speed === 'fast',
-          'duration-700': speed === 'normal',
-          'duration-1000': speed === 'slow',
-        })}
+        className={cn(
+          'relative preserve-3d w-full h-full transition-transform rotate-y-0',
+          {
+            'rotate-y-180': flipped,
+            'duration-500': speed === 'fast',
+            'duration-700': speed === 'normal',
+            'duration-1000': speed === 'slow',
+          }
+        )}
+        onTransitionEnd={onFlipEnd}
       >
         {children}
       </div>

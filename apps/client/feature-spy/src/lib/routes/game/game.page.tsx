@@ -9,7 +9,7 @@ import { generateGameSpies } from '../../services/generate-game-spies';
 
 export function GamePage() {
   const [gameSettings] = useAtom(spyGameSettingsAtom);
-  const [gameSession, setGameSession] = useAtom(spyGameSessionAtom);
+  const [, setGameSession] = useAtom(spyGameSessionAtom);
   const { i18n } = useTranslation();
   const gameLanguage = i18n.language.split('-')[0];
 
@@ -34,5 +34,5 @@ export function GamePage() {
     });
   }, []);
 
-  return <GameBoard gameSession={gameSession} />;
+  return <GameBoard />;
 }

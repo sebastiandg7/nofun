@@ -13,6 +13,9 @@ const backfaceVisibility = plugin(function ({ addUtilities }) {
 
 const elementFlip = plugin(function ({ addUtilities }) {
   addUtilities({
+    '.rotate-y-0': {
+      transform: 'rotateY(0deg)',
+    },
     '.rotate-y-180': {
       transform: 'rotateY(180deg)',
     },
