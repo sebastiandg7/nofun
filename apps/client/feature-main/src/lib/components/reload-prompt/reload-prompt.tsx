@@ -1,6 +1,8 @@
-import React from 'react';
+import { toast } from 'sonner';
+import ReactGA from 'react-ga4';
 import './reload-prompt.css';
 
+import { useEffect } from 'react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 
 function ReloadPrompt() {
@@ -10,47 +12,71 @@ function ReloadPrompt() {
     updateServiceWorker,
   } = useRegisterSW({
     onRegistered(r) {
-      // eslint-disable-next-line prefer-template
-      console.log('SW Registered: ' + r);
+      ReactGA.event({
+        category: 'PWA',
+        action: 'SW_REGISTERED',
+        label: r?.active?.scriptURL,
+        nonInteraction: true,
+      });
     },
     onRegisterError(error) {
-      console.log('SW registration error', error);
+      ReactGA.event({
+        category: 'PWA',
+        action: 'SW_REGISTER_ERROR',
+        label: typeof error === 'string' ? error : JSON.stringify(error),
+        nonInteraction: true,
+      });
+      console.error('SW registration error', error);
     },
   });
 
-  const close = () => {
+  const onCloseClick = () => {
+    ReactGA.event({
+      category: 'PWA',
+      action: 'REJECT_UPDATE',
+      nonInteraction: true,
+    });
     setOfflineReady(false);
     setNeedRefresh(false);
   };
 
-  return (
-    <div className="ReloadPrompt-container">
-      {(offlineReady || needRefresh) && (
-        <div className="ReloadPrompt-toast">
-          <div className="ReloadPrompt-message">
-            {offlineReady ? (
-              <span>App ready to work offline</span>
-            ) : (
-              <span>
-                New content available, click on reload button to update.
-              </span>
-            )}
-          </div>
-          {needRefresh && (
-            <button
-              className="ReloadPrompt-toast-button"
-              onClick={() => updateServiceWorker(true)}
-            >
-              Reload
-            </button>
-          )}
-          <button className="ReloadPrompt-toast-button" onClick={() => close()}>
-            Close
-          </button>
-        </div>
-      )}
-    </div>
-  );
+  function onReloadClick() {
+    ReactGA.event({
+      category: 'PWA',
+      action: 'ACCEPT_UPDATE',
+      nonInteraction: true,
+    });
+    updateServiceWorker(true);
+  }
+
+  useEffect(() => {
+    if (offlineReady) {
+      toast.success('App ready to work offline', {
+        position: 'top-center',
+      });
+    }
+
+    if (needRefresh) {
+      toast.info('New content available, click on reload button to update.', {
+        duration: 10000,
+        position: 'top-center',
+        action: {
+          label: 'Reload',
+          onClick: () => {
+            onReloadClick();
+          },
+        },
+        cancel: {
+          label: 'Close',
+          onClick: () => {
+            onCloseClick();
+          },
+        },
+      });
+    }
+  }, [offlineReady, needRefresh]);
+
+  return null;
 }
 
 export { ReloadPrompt };

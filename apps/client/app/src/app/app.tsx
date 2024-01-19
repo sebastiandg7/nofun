@@ -10,7 +10,7 @@ export function App() {
       <DevTools />
       <UIModeProvider defaultUIMode="system" storageKey="ui-theme">
         <RouterProvider router={router} />
-        <SonnerToaster />
+        <SonnerToaster richColors />
       </UIModeProvider>
     </>
   );
