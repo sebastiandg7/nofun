@@ -3,6 +3,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { resolve } from 'path';
+import { VitePWA } from 'vite-plugin-pwa';
+import { pwaConfig } from './pwa/pwa-config';
 
 export default defineConfig({
   root: __dirname,
@@ -24,6 +26,7 @@ export default defineConfig({
         presets: ['jotai/babel/preset'],
       },
     }),
+    VitePWA(pwaConfig),
     nxViteTsPaths(),
   ],
 

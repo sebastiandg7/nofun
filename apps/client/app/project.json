@@ -20,6 +20,13 @@
         }
       }
     },
+    "generate-pwa-assets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pwa-assets-generator --preset minimal-2023 src/assets/logo.svg",
+        "cwd": "apps/client/app"
+      }
+    },
     "serve": {
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
