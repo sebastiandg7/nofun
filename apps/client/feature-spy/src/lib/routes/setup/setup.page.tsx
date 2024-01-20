@@ -1,15 +1,20 @@
 import { Button } from '@nofun/ui-components';
+import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { GameStage, spyGameSessionAtom } from '../../+state/game-session.state';
 import { SPY_NAMESPACE } from '../../i18n/constants';
 import { GameSettings } from './components/game-settings';
 
 export function SetupPage() {
+  const [, setGameSession] = useAtom(spyGameSessionAtom);
   const { t } = useTranslation(SPY_NAMESPACE);
-  const navigate = useNavigate();
 
   function onStartGamePressed() {
-    navigate('game');
+    // navigate('game');
+    setGameSession((_gameSession) => {
+      _gameSession.gameStage = GameStage.WordReveal;
+      return _gameSession;
+    });
   }
 
   return (

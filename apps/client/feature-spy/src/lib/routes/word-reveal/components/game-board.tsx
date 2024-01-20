@@ -5,9 +5,10 @@ import {
   Icons,
 } from '@nofun/ui-components';
 import { HelpCircle } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   GameSession,
+  GameStage,
   spyGameSessionAtom,
 } from '../../../+state/game-session.state';
 import { useAtom } from 'jotai';
@@ -47,7 +48,7 @@ function PlayerCardContent(props: {
 }
 
 export function GameBoard() {
-  const [gameSession] = useAtom(spyGameSessionAtom);
+  const [gameSession, setGameSession] = useAtom(spyGameSessionAtom);
   const { t } = useTranslation(SPY_NAMESPACE);
 
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
@@ -56,8 +57,38 @@ export function GameBoard() {
   const [cardFlipped, setCardFlipped] = useState(false);
   const [cardFlippable, setCardFlippable] = useState(true);
 
+  useEffect(() => {
+    if (gameSession.players && gameSession.players.length > 0) {
+      return;
+    }
+
+    if (gameSession.gameStage === GameStage.WordReveal) {
+      return;
+    }
+
+    if (gameSession.category) {
+      return;
+    }
+
+    if (gameSession.word && gameSession.word !== '') {
+      return;
+    }
+
+    setGameSession((_gameSession) => {
+      _gameSession.gameStage = GameStage.Setup;
+      return _gameSession;
+    });
+  }, [gameSession]);
+
   function onGameCardFlip() {
     if (!cardFlipped) {
+      if (currentPlayerIndex === gameSession.players.length - 1) {
+        setGameSession((_gameSession) => {
+          _gameSession.gameStage = GameStage.Timer;
+          return _gameSession;
+        });
+        return;
+      }
       setCurrentPlayerIndex(
         (index) => (index + 1) % (gameSession.players?.length ?? 1)
       );

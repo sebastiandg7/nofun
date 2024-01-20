@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { GameBoard } from './components/game-board';
 import { generateGameSpies } from '../../services/generate-game-spies';
 
-export function GamePage() {
+export function WordRevealPage() {
   const [gameSettings] = useAtom(spyGameSettingsAtom);
   const [, setGameSession] = useAtom(spyGameSessionAtom);
   const { i18n } = useTranslation();
