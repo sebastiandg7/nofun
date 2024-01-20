@@ -68,7 +68,10 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "ignorePath": "apps/client/app/.eslintignore"
+      }
     }
   },
   "tags": []
