@@ -51,7 +51,7 @@ export function TimerPage() {
               >
                 {formatTimerNumber(minutes)}:{formatTimerNumber(seconds)}
               </h2>
-              <span className="text-xl  text-foreground mx-auto mb-8">
+              <span className="text-xl text-foreground mx-auto mb-8">
                 {completed ? t('Se acabó el tiempo!') : t('Quién es el espía?')}
               </span>
             </>
@@ -59,7 +59,7 @@ export function TimerPage() {
         />
       )}
       {!gameSettings.timer.enabled && (
-        <span className="text-xl  text-foreground mx-auto mb-8">
+        <span className="text-xl text-foreground mx-auto mb-8">
           {t('Quién es el espía?')}
         </span>
       )}
