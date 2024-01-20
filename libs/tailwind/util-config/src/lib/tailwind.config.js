@@ -102,6 +102,9 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      transitionTimingFunction: {
+        'in-shake': 'cubic-bezier(0.5,120,0.5,-120)',
+      },
       minWidth: (theme) => ({
         32: theme('spacing[32]'),
       }),

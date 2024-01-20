@@ -1,14 +1,19 @@
 import type { RouteObject } from 'react-router-dom';
 import { SetupPage } from './routes/setup/setup.page';
-import { GamePage } from './routes/game/game.page';
+import { WordRevealPage } from './routes/word-reveal/word-reveal.page';
+import { TimerPage } from './routes/timer/timer.page';
 
 export const spyRouter: RouteObject[] = [
   {
-    path: '',
+    path: 'setup',
     element: <SetupPage />,
   },
   {
-    path: 'game',
-    element: <GamePage />,
+    path: 'word-reveal',
+    element: <WordRevealPage />,
+  },
+  {
+    path: 'timer',
+    element: <TimerPage />,
   },
 ];

@@ -98,6 +98,7 @@
     "jotai-immer": "^0.3.0",
     "lucide-react": "^0.307.0",
     "react": "18.2.0",
+    "react-countdown": "^2.3.5",
     "react-day-picker": "^8.10.0",
     "react-dom": "18.2.0",
     "react-ga4": "^2.1.0",

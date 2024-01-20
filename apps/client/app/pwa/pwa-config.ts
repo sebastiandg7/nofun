@@ -3,13 +3,13 @@ import { manifestOptions } from './manifest-options';
 
 export const pwaConfig: Partial<VitePWAOptions> = {
   injectRegister: 'auto',
-  registerType: 'autoUpdate',
+  registerType: 'prompt',
   strategies: 'generateSW',
   manifest: {
     ...manifestOptions,
   },
   workbox: {
-    globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+    globPatterns: ['**/*.{js,css,html,ico,png,svg,mp3}'],
     cleanupOutdatedCaches: true,
     cacheId: 'nofun-cache',
   },
