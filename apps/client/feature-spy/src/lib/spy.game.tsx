@@ -1,14 +1,22 @@
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { GameStage, spyGameSessionAtom } from './+state/game-session.state';
 
 /* eslint-disable-next-line */
 export interface FeatureSpyProps {}
 
 export function SpyGame(props: FeatureSpyProps) {
-  const [gameSession] = useAtom(spyGameSessionAtom);
+  const [gameSession, setGameSession] = useAtom(spyGameSessionAtom);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setGameSession((_gameSession) => {
+      _gameSession.gameStage = GameStage.Setup;
+      return _gameSession;
+    });
+  }, []);
 
   useEffect(() => {
     switch (gameSession.gameStage) {
@@ -25,7 +33,7 @@ export function SpyGame(props: FeatureSpyProps) {
         navigate('setup');
         break;
     }
-  }, [gameSession]);
+  }, [gameSession, pathname]);
 
   return <Outlet />;
 }
