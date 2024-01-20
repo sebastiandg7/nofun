@@ -25,32 +25,47 @@ export function TimerPage() {
   }
 
   function onTimerComplete() {
-    navigator.vibrate(1000);
+    const audio = new Audio('assets/audio/wrong-buzzer.mp3');
+    audio.volume = 1;
+    navigator.vibrate(audio.duration);
+    audio.play();
   }
+
+  const timerDuration =
+    process.env.NODE_ENV === 'development'
+      ? 5000
+      : gameSettings.timer.durationInMins * 60 * 1000;
 
   return (
     <div className="flex flex-col justify-center items-center h-full flex-1">
       {gameSettings.timer.enabled && (
         <Countdown
           onComplete={onTimerComplete}
-          date={Date.now() + gameSettings.timer.durationInMins * 60 * 1000}
+          date={Date.now() + timerDuration}
           renderer={({ minutes, seconds, completed }) => (
             <>
-              <Timer
-                className={cn('w-24 h-24 text-foreground mx-auto mb-4', {
-                  'text-red-800': completed,
-                })}
-              />
-              <h2
+              <div
                 className={cn(
-                  'text-8xl font-bold text-foreground mx-auto mb-4',
-                  {
-                    'text-red-800': completed,
-                  }
+                  'duration-200 delay-200 origin-bottom transition-transform',
+                  { 'hover:rotate-[0.25deg] hover:ease-in-shake': true }
                 )}
               >
-                {formatTimerNumber(minutes)}:{formatTimerNumber(seconds)}
-              </h2>
+                <Timer
+                  className={cn('w-24 h-24 text-foreground mx-auto mb-4', {
+                    'text-red-800': completed,
+                  })}
+                />
+                <h2
+                  className={cn(
+                    'text-8xl font-bold text-foreground mx-auto mb-4',
+                    {
+                      'text-red-800': completed,
+                    }
+                  )}
+                >
+                  {formatTimerNumber(minutes)}:{formatTimerNumber(seconds)}
+                </h2>
+              </div>
               <span className="text-xl text-foreground mx-auto mb-8">
                 {completed ? t('Se acabó el tiempo!') : t('Quién es el espía?')}
               </span>
