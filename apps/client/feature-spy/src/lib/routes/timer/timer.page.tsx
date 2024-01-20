@@ -7,11 +7,30 @@ import { SPY_NAMESPACE } from '../../i18n/constants';
 import Countdown from 'react-countdown';
 import { Timer } from 'lucide-react';
 import { cn } from '@nofun/tailwind-util-class-names';
+import { useWakeLock } from '@nofun/util-browser';
+import { useEffect } from 'react';
 
 export function TimerPage() {
   const [gameSettings] = useAtom(spyGameSettingsAtom);
   const [, setGameSession] = useAtom(spyGameSessionAtom);
   const { t } = useTranslation(SPY_NAMESPACE);
+
+  const {
+    isSupported: isWakeLockSupported,
+    released: wakeLockReleased,
+    request: requestWakeLock,
+    release: releaseWakeLock,
+  } = useWakeLock({
+    onRequest: () => alert('Screen Wake Lock: requested!'),
+    onError: () => alert('An error happened 💥'),
+    onRelease: () => alert('Screen Wake Lock: released!'),
+  });
+
+  useEffect(() => {
+    return () => {
+      releaseWakeLock();
+    };
+  }, []);
 
   function onPlayAgainPressed() {
     setGameSession((_gameSession) => {
@@ -24,7 +43,14 @@ export function TimerPage() {
     return number.toString().padStart(2, '0');
   }
 
+  async function onTimerStart() {
+    if (gameSettings.timer.enabled && isWakeLockSupported && wakeLockReleased) {
+      await requestWakeLock();
+    }
+  }
+
   function onTimerComplete() {
+    releaseWakeLock();
     const audio = new Audio('assets/audio/wrong-buzzer.mp3');
     audio.volume = 1;
     navigator.vibrate(audio.duration);
@@ -40,6 +66,7 @@ export function TimerPage() {
     <div className="flex flex-col justify-center items-center h-full flex-1">
       {gameSettings.timer.enabled && (
         <Countdown
+          onStart={onTimerStart}
           onComplete={onTimerComplete}
           date={Date.now() + timerDuration}
           renderer={({ minutes, seconds, completed }) => (
