@@ -46,8 +46,8 @@ export function TimerPage() {
             <>
               <div
                 className={cn(
-                  'duration-200 delay-200 origin-bottom transition-transform',
-                  { 'hover:rotate-[0.25deg] hover:ease-in-shake': true }
+                  'duration-200 delay-200 origin-bottom transition-transform ease-in-shake',
+                  { 'rotate-[0.25deg]': completed }
                 )}
               >
                 <Timer
