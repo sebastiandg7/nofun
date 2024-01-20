@@ -9,7 +9,7 @@ export const pwaConfig: Partial<VitePWAOptions> = {
     ...manifestOptions,
   },
   workbox: {
-    globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+    globPatterns: ['**/*.{js,css,html,ico,png,svg,mp3}'],
     cleanupOutdatedCaches: true,
     cacheId: 'nofun-cache',
   },
