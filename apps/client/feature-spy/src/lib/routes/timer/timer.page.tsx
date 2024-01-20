@@ -8,18 +8,20 @@ import Countdown from 'react-countdown';
 import { Timer } from 'lucide-react';
 import { cn } from '@nofun/tailwind-util-class-names';
 import { useWakeLock } from '@nofun/util-browser';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function TimerPage() {
   const [gameSettings] = useAtom(spyGameSettingsAtom);
   const [, setGameSession] = useAtom(spyGameSessionAtom);
   const { t } = useTranslation(SPY_NAMESPACE);
+  const [timerDone, setTimerDone] = useState(false);
 
   const {
     isSupported: isWakeLockSupported,
     released: wakeLockReleased,
     request: requestWakeLock,
     release: releaseWakeLock,
+    wakeLock,
   } = useWakeLock({
     onRequest: () => alert('Screen Wake Lock: requested!'),
     onError: () => alert('An error happened 💥'),
@@ -27,7 +29,20 @@ export function TimerPage() {
   });
 
   useEffect(() => {
+    const handleVisibilityChange = async () => {
+      if (
+        wakeLock !== null &&
+        document.visibilityState === 'visible' &&
+        !timerDone
+      ) {
+        await requestWakeLock();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+
       releaseWakeLock();
     };
   }, []);
@@ -50,6 +65,7 @@ export function TimerPage() {
   }
 
   function onTimerComplete() {
+    setTimerDone(true);
     releaseWakeLock();
     const audio = new Audio('assets/audio/wrong-buzzer.mp3');
     audio.volume = 1;

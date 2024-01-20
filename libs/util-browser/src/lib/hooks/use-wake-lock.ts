@@ -73,5 +73,6 @@ export const useWakeLock = ({
     released,
     release,
     type: (wakeLock.current && wakeLock.current.type) || undefined,
+    wakeLock: wakeLock.current,
   };
 };
