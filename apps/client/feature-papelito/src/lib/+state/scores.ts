@@ -34,19 +34,16 @@ const leaderboardAtom = atom((get) => {
 });
 
 function createRoundScoresAtom(options: { round: GameRound }) {
-  return atom((get) => {
+  return atom<Array<GroupScore>>((get) => {
     const gameSession = get(gameSessionAtom);
     const round = gameSession.rounds[options.round];
-    const group = gameSession.groups.find((g) => g.id === options.group.id);
 
-    if (!group) {
-      throw new Error('Group not found');
-    }
-
-    return group.players.reduce((acc, player) => {
-      const guessedWords = round.guessedWords[player];
-      return acc + guessedWords.length;
-    }, 0);
+    return gameSession.groups.map((group) => {
+      return {
+        ...group,
+        score: calculateGroupRoundScore(group, round),
+      };
+    });
   });
 }
 
