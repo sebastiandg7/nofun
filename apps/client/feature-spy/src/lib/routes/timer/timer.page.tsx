@@ -1,49 +1,51 @@
+import { cn } from '@nofun/tailwind-util-class-names';
 import { Button } from '@nofun/ui-components';
+import { useWakeLock } from '@nofun/util-browser';
 import { useAtom } from 'jotai';
+import { Timer } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import Countdown from 'react-countdown';
 import { useTranslation } from 'react-i18next';
 import { GameStage, spyGameSessionAtom } from '../../+state/game-session.state';
 import { spyGameSettingsAtom } from '../../+state/game-settings.state';
 import { SPY_NAMESPACE } from '../../i18n/constants';
-import Countdown from 'react-countdown';
-import { Timer } from 'lucide-react';
-import { cn } from '@nofun/tailwind-util-class-names';
-import { useWakeLock } from '@nofun/util-browser';
-import { useEffect, useState } from 'react';
 
 export function TimerPage() {
   const [gameSettings] = useAtom(spyGameSettingsAtom);
   const [, setGameSession] = useAtom(spyGameSessionAtom);
   const { t } = useTranslation(SPY_NAMESPACE);
-  const [timerDone, setTimerDone] = useState(false);
+  const timerDone = useRef(false);
 
   const {
     isSupported: isWakeLockSupported,
-    released: wakeLockReleased,
+    released: isWakeLockReleased,
     request: requestWakeLock,
     release: releaseWakeLock,
-    wakeLock,
   } = useWakeLock({
-    onRequest: () => alert('Screen Wake Lock: requested!'),
-    onError: () => alert('An error happened 💥'),
-    onRelease: () => alert('Screen Wake Lock: released!'),
+    onRequest: () => {},
+    onError: () => {},
+    onRelease: () => {},
   });
 
   useEffect(() => {
     const handleVisibilityChange = async () => {
       if (
-        wakeLock !== null &&
+        isWakeLockSupported &&
         document.visibilityState === 'visible' &&
-        !timerDone
+        gameSettings.timer.enabled &&
+        !timerDone.current
       ) {
+        console.log('[visiblitychange: visible] request wake lock');
         await requestWakeLock();
       }
     };
-
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
 
-      releaseWakeLock();
+      if (isWakeLockSupported && !isWakeLockReleased) {
+        releaseWakeLock();
+      }
     };
   }, []);
 
@@ -59,24 +61,27 @@ export function TimerPage() {
   }
 
   async function onTimerStart() {
-    if (gameSettings.timer.enabled && isWakeLockSupported && wakeLockReleased) {
+    if (gameSettings.timer.enabled && isWakeLockSupported) {
       await requestWakeLock();
     }
   }
 
   function onTimerComplete() {
-    setTimerDone(true);
-    releaseWakeLock();
+    timerDone.current = true;
+    if (isWakeLockSupported && !isWakeLockReleased) {
+      releaseWakeLock();
+    }
     const audio = new Audio('assets/audio/wrong-buzzer.mp3');
-    audio.volume = 1;
+    audio.volume = 0.5;
     navigator.vibrate(audio.duration);
     audio.play();
   }
 
   const timerDuration =
     process.env.NODE_ENV === 'development'
-      ? 5000
+      ? 10000
       : gameSettings.timer.durationInMins * 60 * 1000;
+  const timerTimestamp = Date.now() + timerDuration;
 
   return (
     <div className="flex flex-col justify-center items-center h-full flex-1">
@@ -84,7 +89,7 @@ export function TimerPage() {
         <Countdown
           onStart={onTimerStart}
           onComplete={onTimerComplete}
-          date={Date.now() + timerDuration}
+          date={timerTimestamp}
           renderer={({ minutes, seconds, completed }) => (
             <>
               <div
