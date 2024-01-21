@@ -13,7 +13,7 @@ export const useWakeLock = ({
   onRequest,
   onRelease,
 }: WakeLockOptions | undefined = {}) => {
-  const [released, setReleased] = React.useState<boolean | undefined>();
+  const released = React.useRef<boolean | undefined>();
   const wakeLock = React.useRef<WakeLockSentinel | null>(null);
 
   // https://caniuse.com/mdn-api_wakelock
@@ -38,13 +38,15 @@ export const useWakeLock = ({
 
         wakeLock.current.onrelease = (e: Event) => {
           // Default to `true` - `released` API is experimental: https://caniuse.com/mdn-api_wakelocksentinel_released
-          setReleased((wakeLock.current && wakeLock.current.released) || true);
+          released.current =
+            (wakeLock.current && wakeLock.current.released) || true;
           onRelease && onRelease(e);
           wakeLock.current = null;
         };
 
         onRequest && onRequest();
-        setReleased((wakeLock.current && wakeLock.current.released) || false);
+        released.current =
+          (wakeLock.current && wakeLock.current.released) || false;
       } catch (error) {
         onError && onError(error as Error);
       }
