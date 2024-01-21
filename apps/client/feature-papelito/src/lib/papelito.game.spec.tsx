@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { PapelitoGame } from './papelito-game';
+import { PapelitoGame } from './papelito.game';
 
 describe('PapelitoGame', () => {
   it('should render successfully', () => {
