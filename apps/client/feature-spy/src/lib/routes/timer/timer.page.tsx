@@ -71,10 +71,10 @@ export function TimerPage() {
     if (isWakeLockSupported && !isWakeLockReleased) {
       releaseWakeLock();
     }
-    const audio = new Audio('assets/audio/wrong-buzzer.mp3');
-    audio.volume = 0.5;
-    navigator.vibrate(audio.duration);
-    audio.play();
+    const timerCompleteAudio = new Audio('assets/audio/wrong-buzzer.mp3');
+    timerCompleteAudio.volume = 1;
+    timerCompleteAudio.play();
+    navigator.vibrate(1500);
   }
 
   const timerDuration =
