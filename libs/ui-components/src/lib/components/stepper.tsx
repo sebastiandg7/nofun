@@ -50,14 +50,14 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     }, [activeStep, isReachEnd, widthPerStep]);
 
     const stepperClasses = cn('w-full relative flex items-center justify-between', className);
-    const lineClasses = cn('absolute left-0 top-2/4 h-0.5 w-full -translate-y-2/4 bg-gray-300', lineClassName);
+    const lineClasses = cn('absolute left-0 top-2/4 h-0.5 w-full -translate-y-2/4 bg-slate-900', lineClassName);
     const activeLineClasses = cn(
       lineClasses,
-      'bg-gray-900 transition-all duration-500',
+      'bg-slate-300 transition-all duration-500',
       activeLineClassName,
     );
-    const activeStepClasses = 'bg-gray-900 text-white';
-    const completedStepClasses = 'bg-gray-900 text-white';
+    const activeStepClasses = 'bg-slate-300 text-slate-900';
+    const completedStepClasses = 'bg-slate-300 text-slate-900';
 
     useEffect(() => {
       onLastStep && typeof onLastStep === "function" && onLastStep(isLastStepValue);
@@ -105,7 +105,7 @@ export interface StepProps extends React.ComponentProps<"div"> {
 
 export const Step = React.forwardRef<HTMLDivElement, StepProps>(
   ({ className, activeClassName, completedClassName, children, ...rest }, ref) => {
-    const stepClasses = cn('relative z-10 grid place-items-center w-10 h-10 rounded-full bg-gray-300 text-gray-900 font-bold transition-all duration-300', className);
+    const stepClasses = cn('relative z-10 grid place-items-center w-10 h-10 rounded-full bg-slate-900 text-slate-300 font-bold transition-all duration-300', className);
     return (
       <div {...rest} ref={ref} className={stepClasses}>
         {children}
