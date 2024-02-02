@@ -9,19 +9,29 @@ import {
   Step,
   Stepper,
 } from '@nofun/ui-components';
-import { HelpCircle, Quote } from 'lucide-react';
+import { AlertCircle, HelpCircle, Quote } from 'lucide-react';
 import { useState } from 'react';
+import { SPY_NAMESPACE } from '../../../i18n/constants';
+import { useTranslation } from 'react-i18next';
 
 export function HelpDialog() {
+  const { t } = useTranslation(SPY_NAMESPACE);
+
   const [activeStep, setActiveStep] = useState(0);
   const [isLastStep, setIsLastStep] = useState(false);
   const [isFirstStep, setIsFirstStep] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleNext = () => !isLastStep && setActiveStep((cur) => cur + 1);
   const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
 
+  const resetState = () => {
+    setOpen(false);
+    setActiveStep(0);
+  }
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
           size="icon"
@@ -31,9 +41,9 @@ export function HelpDialog() {
           <HelpCircle className="w-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="mx-auto">
+      <DialogContent className="mx-auto h-dvh" onInteractOutside={() => setActiveStep(0)}>
         <DialogHeader>
-          <DialogTitle>Como jugar?</DialogTitle>
+          <DialogTitle>{t('setup.help.title')}</DialogTitle>
         </DialogHeader>
         <Stepper
           activeStep={activeStep}
@@ -42,20 +52,15 @@ export function HelpDialog() {
         >
           <Step onClick={() => setActiveStep(0)}>1</Step>
           <Step onClick={() => setActiveStep(1)}>2</Step>
-          {/* <Step onClick={() => setActiveStep(2)}>3</Step> */}
+          <Step onClick={() => setActiveStep(2)}>3</Step>
+          <Step onClick={() => setActiveStep(3)}>4</Step>
         </Stepper>
         <div className="p-2">
           {activeStep === 0 ? (
             <div className="flex items-center flex-col">
               <Icons.Spy className="h-16 w-16" />
               <p className="mt-5 text-justify">
-                Bienvenidos a Espía! En esta experiencia única, todos
-                compartirán una palabra, pero hay un impostor entre ustedes. El
-                impostor no sabe cuál es la palabra, pero debe disimular y
-                descubrir la verdad a través de las pistas que los demás revelan
-                al referirse a ella. ¿Podrán los jugadores astutos identificar
-                al impostor antes de que sea demasiado tarde? ¡Prepárense para
-                una aventura de palabras y engaños!
+                {t('setup.help.step1')}
               </p>
             </div>
           ) : null}
@@ -63,23 +68,33 @@ export function HelpDialog() {
             <div className="flex items-center flex-col">
               <Quote className="h-16 w-16" />
               <p className="mt-5 text-justify">
-                Presiona la tarjeta con el{' '}
-                <HelpCircle className="inline-block" /> para revelar si eres de
-                los buenos o un espía. Si te aparece una palabra, leela,
-                memorízala (que no se te olvide!), vuelve a presionar la tarjeta
-                y pasale el telefono al siguiente jugador y así hasta que cada
-                uno sepa su rol.
+                {t('setup.help.step2')}
               </p>
             </div>
           ) : null}
-          {/* {activeStep === 2 ? <div>Paso 3</div> : null} */}
+          {activeStep === 2 ? (
+            <div className="flex items-center flex-col">
+              <AlertCircle className='h-16 w-16' />
+              <p className="mt-5 text-justify">
+                {t('setup.help.step3')}
+              </p>
+            </div>
+          ) : null}
+          {activeStep === 3 ? (
+            <div className="flex items-center flex-col">
+              <Icons.Spy className="h-16 w-16" />
+              <p className="mt-5 text-justify">
+                {t('setup.help.step4')}
+              </p>
+            </div>
+          ) : null}
         </div>
         <div className="mt-16 flex justify-between">
           <Button onClick={handlePrev} disabled={isFirstStep}>
-            Prev
+            {t('setup.help.button.prev')}
           </Button>
-          <Button onClick={handleNext} disabled={isLastStep}>
-            Next
+          <Button onClick={!isLastStep ? handleNext : resetState}>
+            {!isLastStep ? t('setup.help.button.next') : t('setup.help.button.close')}
           </Button>
         </div>
       </DialogContent>
