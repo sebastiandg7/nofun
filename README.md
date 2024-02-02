@@ -4,6 +4,8 @@
 
 Nothing serious. Just for fun.
 
+https://nofun.sebastiandg.com
+
 # Contributing
 
 PRs welcome. Read the [NX.md](/NX.md) file for some basic workspace usage.
