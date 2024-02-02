@@ -28,7 +28,7 @@ export function HelpDialog() {
   const resetState = () => {
     setOpen(false);
     setActiveStep(0);
-  }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -41,7 +41,10 @@ export function HelpDialog() {
           <HelpCircle className="w-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="mx-auto h-dvh" onInteractOutside={() => setActiveStep(0)}>
+      <DialogContent
+        className="mx-auto"
+        onInteractOutside={() => setActiveStep(0)}
+      >
         <DialogHeader>
           <DialogTitle>{t('setup.help.title')}</DialogTitle>
         </DialogHeader>
@@ -59,33 +62,25 @@ export function HelpDialog() {
           {activeStep === 0 ? (
             <div className="flex items-center flex-col">
               <Icons.Spy className="h-16 w-16" />
-              <p className="mt-5 text-justify">
-                {t('setup.help.step1')}
-              </p>
+              <p className="mt-5 text-justify">{t('setup.help.step1')}</p>
             </div>
           ) : null}
           {activeStep === 1 ? (
             <div className="flex items-center flex-col">
               <Quote className="h-16 w-16" />
-              <p className="mt-5 text-justify">
-                {t('setup.help.step2')}
-              </p>
+              <p className="mt-5 text-justify">{t('setup.help.step2')}</p>
             </div>
           ) : null}
           {activeStep === 2 ? (
             <div className="flex items-center flex-col">
-              <AlertCircle className='h-16 w-16' />
-              <p className="mt-5 text-justify">
-                {t('setup.help.step3')}
-              </p>
+              <AlertCircle className="h-16 w-16" />
+              <p className="mt-5 text-justify">{t('setup.help.step3')}</p>
             </div>
           ) : null}
           {activeStep === 3 ? (
             <div className="flex items-center flex-col">
               <Icons.Spy className="h-16 w-16" />
-              <p className="mt-5 text-justify">
-                {t('setup.help.step4')}
-              </p>
+              <p className="mt-5 text-justify">{t('setup.help.step4')}</p>
             </div>
           ) : null}
         </div>
@@ -94,7 +89,9 @@ export function HelpDialog() {
             {t('setup.help.button.prev')}
           </Button>
           <Button onClick={!isLastStep ? handleNext : resetState}>
-            {!isLastStep ? t('setup.help.button.next') : t('setup.help.button.close')}
+            {!isLastStep
+              ? t('setup.help.button.next')
+              : t('setup.help.button.close')}
           </Button>
         </div>
       </DialogContent>

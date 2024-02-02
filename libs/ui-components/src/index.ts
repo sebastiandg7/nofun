@@ -318,7 +318,4 @@ export {
   FlipCardBack,
 } from './lib/components/flip-card';
 
-export {
-  Stepper,
-  Step
- } from './lib/components/stepper'
+export { Stepper, Step } from './lib/components/stepper';
