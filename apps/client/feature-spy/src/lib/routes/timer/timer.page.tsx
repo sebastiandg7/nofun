@@ -1,5 +1,5 @@
 import { cn } from '@nofun/tailwind-util-class-names';
-import { Button } from '@nofun/ui-components';
+import { Button, Icons } from '@nofun/ui-components';
 import { useWakeLock } from '@nofun/util-browser';
 import { useAtom } from 'jotai';
 import { Timer } from 'lucide-react';
@@ -71,10 +71,10 @@ export function TimerPage() {
     if (isWakeLockSupported && !isWakeLockReleased) {
       releaseWakeLock();
     }
-    const audio = new Audio('assets/audio/wrong-buzzer.mp3');
-    audio.volume = 0.5;
-    navigator.vibrate(audio.duration);
-    audio.play();
+    const timerCompleteAudio = new Audio('assets/audio/wrong-buzzer.mp3');
+    timerCompleteAudio.volume = 1;
+    timerCompleteAudio.play();
+    navigator.vibrate(1500);
   }
 
   const timerDuration =
@@ -122,9 +122,12 @@ export function TimerPage() {
         />
       )}
       {!gameSettings.timer.enabled && (
-        <span className="text-xl text-foreground mx-auto mb-8">
-          {t('Quién es el espía?')}
-        </span>
+        <>
+          <Icons.Spy className="w-32 h-32 text-foreground mx-auto mb-4" />
+          <span className="text-2xl font-bold text-foreground mx-auto mb-8">
+            {t('Quién es el espía?')}
+          </span>
+        </>
       )}
       <Button className="mx-auto min-w-32" onClick={onPlayAgainPressed}>
         {t('Jugar de nuevo')}
