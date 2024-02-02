@@ -2,7 +2,7 @@
 
 # Nofun
 
-Nothing serious. Just playing around with some stacks.
+Nothing serious. Just for fun.
 
 # Contributing
 
