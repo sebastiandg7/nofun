@@ -56,7 +56,7 @@ export interface GameSession {
   };
 }
 
-const defaultGameSession: GameSession = {
+const gameSessionAtom = atomWithImmer<GameSession>({
   players: [],
   grouping: {
     mode: GroupingMode.Couples,
@@ -81,9 +81,7 @@ const defaultGameSession: GameSession = {
       guessedWords: {},
     },
   },
-};
-
-const gameSessionAtom = atomWithImmer(defaultGameSession);
+});
 gameSessionAtom.debugLabel = 'gameSessionAtom';
 
 const playerGuessRoundWordAtom = atom(
