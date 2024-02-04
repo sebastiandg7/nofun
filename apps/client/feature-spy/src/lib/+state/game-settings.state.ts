@@ -40,4 +40,4 @@ persistentSpyGameSettingsAtom.debugLabel = 'persistentSpyGameSettingsAtom';
 const spyGameSettingsAtom = withImmer(persistentSpyGameSettingsAtom);
 spyGameSettingsAtom.debugLabel = 'spyGameSettingsAtom';
 
-export { spyGameSettingsAtom };
+export { spyGameSettingsAtom, defaultGameSettings };
