@@ -98,6 +98,9 @@ dependencies:
   '@swc/helpers':
     specifier: ~0.5.2
     version: 0.5.3
+  '@yudiel/react-qr-scanner':
+    specifier: ^1.2.6
+    version: 1.2.6(react-dom@18.2.0)(react@18.2.0)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -155,6 +158,9 @@ dependencies:
   react-i18next:
     specifier: ^14.0.0
     version: 14.0.0(i18next@23.7.16)(react-dom@18.2.0)(react@18.2.0)
+  react-qr-code:
+    specifier: ^2.0.12
+    version: 2.0.12(react@18.2.0)
   react-resizable-panels:
     specifier: ^1.0.7
     version: 1.0.7(react-dom@18.2.0)(react@18.2.0)
@@ -6769,6 +6775,20 @@ packages:
       tslib: 2.6.2
     dev: true
 
+  /@yudiel/react-qr-scanner@1.2.6(react-dom@18.2.0)(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-/NngMfY02Sk+kkBPUubrQAjYx4LmXg2DavB/UVwPloDn2RQz3c/yiT31c8DY7aE5a0aiFLFL+By9mqQfAU9nEA==,
+      }
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@zxing/library': 0.20.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@zkochan/js-yaml@0.0.6:
     resolution:
       {
@@ -6778,6 +6798,27 @@ packages:
     dependencies:
       argparse: 2.0.1
     dev: true
+
+  /@zxing/library@0.20.0:
+    resolution:
+      {
+        integrity: sha512-6Ev6rcqVjMakZFIDvbUf0dtpPGeZMTfyxYg4HkVWioWeN7cRcnUWT3bU6sdohc82O1nPXcjq6WiGfXX2Pnit6A==,
+      }
+    engines: { node: '>= 10.4.0' }
+    dependencies:
+      ts-custom-error: 3.3.1
+    optionalDependencies:
+      '@zxing/text-encoding': 0.9.0
+    dev: false
+
+  /@zxing/text-encoding@0.9.0:
+    resolution:
+      {
+        integrity: sha512-U/4aVJ2mxI0aDNI8Uq0wEhMgY+u4CNtEb0om3+y3+niDAsoTCOB33UF0sxpzqzdqXLqmvc+vZyAt4O8pPdfkwA==,
+      }
+    requiresBuild: true
+    dev: false
+    optional: true
 
   /abab@2.0.6:
     resolution:
@@ -12326,6 +12367,13 @@ packages:
     engines: { node: '>=6' }
     dev: true
 
+  /qr.js@0.0.0:
+    resolution:
+      {
+        integrity: sha512-c4iYnWb+k2E+vYpRimHqSu575b1/wKl4XFeJGpFmrJQz5I88v9aY2czh7s0w36srfCM1sXgC/xpoJz5dJfq+OQ==,
+      }
+    dev: false
+
   /qs@6.11.2:
     resolution:
       {
@@ -12527,6 +12575,23 @@ packages:
       '@types/react': 18.2.33
       react: 18.2.0
       react-base16-styling: 0.9.1
+    dev: false
+
+  /react-qr-code@2.0.12(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-k+pzP5CKLEGBRwZsDPp98/CAJeXlsYRHM2iZn1Sd5Th/HnKhIZCSg27PXO58zk8z02RaEryg+60xa4vyywMJwg==,
+      }
+    peerDependencies:
+      react: ^16.x || ^17.x || ^18.x
+      react-native-svg: '*'
+    peerDependenciesMeta:
+      react-native-svg:
+        optional: true
+    dependencies:
+      prop-types: 15.8.1
+      qr.js: 0.0.0
+      react: 18.2.0
     dev: false
 
   /react-refresh@0.14.0:
@@ -14053,6 +14118,14 @@ packages:
     dependencies:
       typescript: 5.2.2
     dev: true
+
+  /ts-custom-error@3.3.1:
+    resolution:
+      {
+        integrity: sha512-5OX1tzOjxWEgsr/YEUWSuPrQ00deKLh6D7OTWcvNHm12/7QPyRh8SYpyWvA4IZv8H/+GQWQEh/kwo95Q9OVW1A==,
+      }
+    engines: { node: '>=14.0.0' }
+    dev: false
 
   /ts-morph@18.0.0:
     resolution:

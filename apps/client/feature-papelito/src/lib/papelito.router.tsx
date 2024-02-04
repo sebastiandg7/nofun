@@ -16,4 +16,8 @@ export const papelitoRouter: RouteObject[] = [
     path: 'game',
     lazy: () => import('./routes/game/game.page'),
   },
+  {
+    path: 'add-words',
+    lazy: () => import('./routes/add-words/add-words.page'),
+  },
 ];
