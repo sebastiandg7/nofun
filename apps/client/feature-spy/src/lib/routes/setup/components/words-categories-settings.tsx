@@ -72,7 +72,7 @@ export function WordCategoriesSettings() {
 
   const wordCategoriesValue = () => {
     if (wordCategories.useAll) {
-      return t('Todas');
+      return t('setup.settings.categories.toggle_all');
     }
 
     return gameSettings.wordCategories.selected.length;
@@ -106,7 +106,7 @@ export function WordCategoriesSettings() {
         <Card className="flex flex-col justify-center">
           <CardHeader className="items-center">
             <NotebookPen className="w-10 h-10" />
-            <CardTitle>{t('Categorías')}</CardTitle>
+            <CardTitle>{t('setup.settings.categories.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <span className="text-2xl text-center w-full inline-block">
@@ -118,9 +118,9 @@ export function WordCategoriesSettings() {
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            <DrawerTitle>{t('Categorias de palabras')}</DrawerTitle>
+            <DrawerTitle>{t('setup.settings.categories.title')}</DrawerTitle>
             <DrawerDescription>
-              {t('Selecciona qué categorias incluir en el juego')}
+              {t('setup.settings.categories.description')}
             </DrawerDescription>
           </DrawerHeader>
           <div className="flex items-center justify-center my-4 space-x-2">
@@ -129,7 +129,7 @@ export function WordCategoriesSettings() {
               checked={wordCategories.useAll}
               onCheckedChange={onUseAllCategoriesChange}
             />
-            <Label htmlFor="spy-use-all-categories">{t('Todas')}</Label>
+            <Label htmlFor="spy-use-all-categories">{t('setup.settings.categories.toggle_all')}</Label>
           </div>
           {!wordCategories.useAll && (
             <div className="grid grid-cols-2 gap-3 p-6">
@@ -149,7 +149,7 @@ export function WordCategoriesSettings() {
           )}
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button>{t('Listo!')}</Button>
+              <Button>{t('setup.settings.ready_btn')}</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

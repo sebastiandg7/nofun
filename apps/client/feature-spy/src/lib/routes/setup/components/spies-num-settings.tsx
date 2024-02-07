@@ -44,7 +44,7 @@ export function SpiesNumSettings() {
         <Card className="flex flex-col justify-center">
           <CardHeader className="items-center">
             <Icons.Spy className="w-10 h-10 mb-1" />
-            <CardTitle>{t('Espías')}</CardTitle>
+            <CardTitle>{t('setup.settings.spies.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <span className="text-2xl text-center w-full inline-block">
@@ -56,9 +56,9 @@ export function SpiesNumSettings() {
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            <DrawerTitle>{t('Cantidad de espías')}</DrawerTitle>
+            <DrawerTitle>{t('setup.settings.spies.num')}</DrawerTitle>
             <DrawerDescription>
-              {t('Un máximo de 1 espía por cada 3 jugadores es recomendado')}
+              {t('setup.settings.spies.description')}
             </DrawerDescription>
           </DrawerHeader>
           <div className="p-4">
@@ -78,7 +78,7 @@ export function SpiesNumSettings() {
                   {spyCount}
                 </div>
                 <div className="text-[0.70rem] uppercase text-muted-foreground">
-                  {t('Espías')}
+                  {t('setup.settings.spies.title')}
                 </div>
               </div>
               <Button
@@ -95,7 +95,7 @@ export function SpiesNumSettings() {
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button>{t('Listo!')}</Button>
+              <Button>{t('setup.settings.ready_btn')}</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>
