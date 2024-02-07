@@ -64,7 +64,9 @@ export function TimerSettings() {
                 'text-2xl': enabled,
               })}
             >
-              {enabled ? `${durationInMins} min` : t('setup.settings.timer.deactivate')}
+              {enabled
+                ? `${durationInMins} min`
+                : t('setup.settings.timer.deactivate')}
             </span>
           </CardContent>
         </Card>
@@ -83,7 +85,9 @@ export function TimerSettings() {
               checked={enabled}
               onCheckedChange={onEnableTimerChange}
             />
-            <Label htmlFor="spy-use-timer">{t('setup.settings.timer.toggle')}</Label>
+            <Label htmlFor="spy-use-timer">
+              {t('setup.settings.timer.toggle')}
+            </Label>
           </div>
           {enabled && (
             <div className="p-4 pb-0">

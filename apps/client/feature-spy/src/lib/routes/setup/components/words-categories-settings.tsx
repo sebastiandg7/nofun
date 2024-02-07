@@ -129,7 +129,9 @@ export function WordCategoriesSettings() {
               checked={wordCategories.useAll}
               onCheckedChange={onUseAllCategoriesChange}
             />
-            <Label htmlFor="spy-use-all-categories">{t('setup.settings.categories.toggle_all')}</Label>
+            <Label htmlFor="spy-use-all-categories">
+              {t('setup.settings.categories.toggle_all')}
+            </Label>
           </div>
           {!wordCategories.useAll && (
             <div className="grid grid-cols-2 gap-3 p-6">

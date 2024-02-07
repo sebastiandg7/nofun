@@ -26,31 +26,31 @@ interface SpyTranslations {
       players: {
         title: string;
         num: string;
-      }
+      };
       spies: {
         title: string;
         description: string;
         num: string;
-      }
+      };
       categories: {
         title: string;
         description: string;
         toggle_all: string;
-      }
+      };
       timer: {
         title: string;
         description: string;
         toggle: string;
         time: string;
         deactivate: string;
-      }
-    }
+      };
+    };
   };
   board: {
     spy_player: string;
     player: string;
     card_hide: string;
-  }
+  };
 }
 
 export const spyTranslations = buildI18NResource<SpyTranslations>({
@@ -93,23 +93,24 @@ export const spyTranslations = buildI18NResource<SpyTranslations>({
           },
           categories: {
             title: 'Categories',
-            description: 'Select the categories you want to include in the game',
-            toggle_all: 'All'
+            description:
+              'Select the categories you want to include in the game',
+            toggle_all: 'All',
           },
           timer: {
             title: 'Time',
             description: 'How much time to uncover the spies?',
             time: 'Minutes',
             toggle: 'Use timer',
-            deactivate: 'Deactivated'
-          }
-        }
+            deactivate: 'Deactivated',
+          },
+        },
       },
       board: {
         spy_player: 'Spy',
         player: 'Player',
-        card_hide: 'Tap to hide the card and move on to the next player.'
-      }
+        card_hide: 'Tap to hide the card and move on to the next player.',
+      },
     },
     es: {
       game: {
@@ -144,27 +145,28 @@ export const spyTranslations = buildI18NResource<SpyTranslations>({
           spies: {
             title: 'Espías',
             num: 'Cantidad de espías',
-            description: 'Un máximo de 1 espía por cada 3 jugadores es recomendado',
+            description:
+              'Un máximo de 1 espía por cada 3 jugadores es recomendado',
           },
           categories: {
             title: 'Categorías',
             description: 'Selecciona qué categorias incluir en el juego',
-            toggle_all: 'Todas'
+            toggle_all: 'Todas',
           },
           timer: {
             title: 'Tiempo',
             description: 'Cuánto tiempo tendrán para descubrir a los espías?',
             time: 'Minutos',
             toggle: 'Usar temporizador',
-            deactivate: 'Desactivado'
-          }
-        }
+            deactivate: 'Desactivado',
+          },
+        },
       },
       board: {
         spy_player: 'Espía',
         player: 'Jugador',
-        card_hide: 'Toca para ocultar la tarjeta y pasa al siguiente jugador'
-      }
+        card_hide: 'Toca para ocultar la tarjeta y pasa al siguiente jugador',
+      },
     },
   },
 });

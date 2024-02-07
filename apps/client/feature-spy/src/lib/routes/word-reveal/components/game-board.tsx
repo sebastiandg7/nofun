@@ -114,11 +114,17 @@ export function GameBoard() {
 
   return (
     <div className="flex flex-col justify-center items-center h-full flex-1 relative">
-      <Button size="icon"
-          variant="secondary" className='absolute top-4 left-4' onClick={onReturnToSetupClick}>
-        <ArrowBigLeftDash className='w-16' />
+      <Button
+        size="icon"
+        variant="secondary"
+        className="absolute top-4 left-4"
+        onClick={onReturnToSetupClick}
+      >
+        <ArrowBigLeftDash className="w-16" />
       </Button>
-      <span className="text-2xl">{`${t('board.player')} ${currentPlayerIndex + 1}`}</span>
+      <span className="text-2xl">{`${t('board.player')} ${
+        currentPlayerIndex + 1
+      }`}</span>
       <FlipCard
         className="max-w-xs w-48 h-72 group my-6"
         onClick={onGameCardClick}
