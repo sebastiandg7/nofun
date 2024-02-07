@@ -2,7 +2,9 @@
 
 # Nofun
 
-Nothing serious. Just playing around with some stacks.
+Nothing serious. Just for fun.
+
+https://nofun.sebastiandg.com
 
 # Contributing
 
