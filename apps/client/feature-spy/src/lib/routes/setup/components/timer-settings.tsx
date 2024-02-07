@@ -55,7 +55,7 @@ export function TimerSettings() {
         <Card className="flex flex-col justify-center">
           <CardHeader className="items-center">
             <Timer className="w-10 h-10" />
-            <CardTitle>{t('Tiempo')}</CardTitle>
+            <CardTitle>{t('setup.settings.timer.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <span
@@ -64,7 +64,9 @@ export function TimerSettings() {
                 'text-2xl': enabled,
               })}
             >
-              {enabled ? `${durationInMins} min` : t('Desactivado')}
+              {enabled
+                ? `${durationInMins} min`
+                : t('setup.settings.timer.deactivate')}
             </span>
           </CardContent>
         </Card>
@@ -72,9 +74,9 @@ export function TimerSettings() {
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            <DrawerTitle>{t('Tiempo')}</DrawerTitle>
+            <DrawerTitle>{t('setup.settings.timer.title')}</DrawerTitle>
             <DrawerDescription>
-              {t('Cuánto tiempo tendrán para descubrir a los espías?')}
+              {t('setup.settings.timer.description')}
             </DrawerDescription>
           </DrawerHeader>
           <div className="flex items-center justify-center my-4 space-x-2">
@@ -83,7 +85,9 @@ export function TimerSettings() {
               checked={enabled}
               onCheckedChange={onEnableTimerChange}
             />
-            <Label htmlFor="spy-use-timer">{t('Usar temporizador')}</Label>
+            <Label htmlFor="spy-use-timer">
+              {t('setup.settings.timer.toggle')}
+            </Label>
           </div>
           {enabled && (
             <div className="p-4 pb-0">
@@ -103,7 +107,7 @@ export function TimerSettings() {
                     {durationInMins}
                   </div>
                   <div className="text-[0.70rem] uppercase text-muted-foreground">
-                    {t('Minutos')}
+                    {t('setup.settings.timer.time')}
                   </div>
                 </div>
                 <Button
@@ -121,7 +125,7 @@ export function TimerSettings() {
           )}
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button>{t('Listo!')}</Button>
+              <Button>{t('setup.settings.ready_btn')}</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

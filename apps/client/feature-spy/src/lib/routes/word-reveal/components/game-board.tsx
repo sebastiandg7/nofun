@@ -1,10 +1,11 @@
 import {
+  Button,
   FlipCard,
   FlipCardBack,
   FlipCardFront,
   Icons,
 } from '@nofun/ui-components';
-import { HelpCircle } from 'lucide-react';
+import { ArrowBigLeftDash, HelpCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import {
   GameSession,
@@ -27,7 +28,7 @@ function PlayerCardContent(props: {
     return (
       <>
         <Icons.Spy className="w-14 h-14 mb-4" />
-        <span className="text-foreground text-lg">{t('Eres espía')}</span>
+        <span className="text-foreground text-lg">{t('board.spy_player')}</span>
       </>
     );
   }
@@ -104,9 +105,26 @@ export function GameBoard() {
     setCardFlippable(false);
   }
 
+  function onReturnToSetupClick() {
+    setGameSession((_gameSession) => {
+      _gameSession.gameStage = GameStage.Setup;
+      return _gameSession;
+    });
+  }
+
   return (
-    <div className="flex flex-col justify-center items-center h-full flex-1">
-      <span className="text-2xl">{`Jugador ${currentPlayerIndex + 1}`}</span>
+    <div className="flex flex-col justify-center items-center h-full flex-1 relative">
+      <Button
+        size="icon"
+        variant="secondary"
+        className="absolute top-4 left-4"
+        onClick={onReturnToSetupClick}
+      >
+        <ArrowBigLeftDash className="w-16" />
+      </Button>
+      <span className="text-2xl">{`${t('board.player')} ${
+        currentPlayerIndex + 1
+      }`}</span>
       <FlipCard
         className="max-w-xs w-48 h-72 group my-6"
         onClick={onGameCardClick}
@@ -133,7 +151,7 @@ export function GameBoard() {
           }
         )}
       >
-        {t('Toca para ocultar la tarjeta y pasa al siguiente jugador')}
+        {t('board.card_hide')}
       </span>
     </div>
   );

@@ -42,7 +42,7 @@ export function PlayersNumSettings() {
         <Card className="flex flex-col justify-center">
           <CardHeader className="items-center">
             <UsersRound className="w-10 h-10" />
-            <CardTitle>{t('Jugadores')}</CardTitle>
+            <CardTitle>{t('setup.settings.players.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <span className="text-2xl text-center w-full inline-block">
@@ -54,7 +54,7 @@ export function PlayersNumSettings() {
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            <DrawerTitle>{t('Cantidad de jugadores')}</DrawerTitle>
+            <DrawerTitle>{t('setup.settings.players.num')}</DrawerTitle>
           </DrawerHeader>
           <div className="p-4">
             <div className="flex items-center justify-center space-x-2">
@@ -73,7 +73,7 @@ export function PlayersNumSettings() {
                   {playerCount}
                 </div>
                 <div className="text-[0.70rem] uppercase text-muted-foreground">
-                  {t('Jugadores')}
+                  {t('setup.settings.players.title')}
                 </div>
               </div>
               <Button
@@ -90,7 +90,7 @@ export function PlayersNumSettings() {
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button>{t('Listo!')}</Button>
+              <Button>{t('setup.settings.ready_btn')}</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

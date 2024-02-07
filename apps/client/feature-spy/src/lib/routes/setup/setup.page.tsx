@@ -32,7 +32,7 @@ export function SetupPage() {
     <div className="flex-1 flex flex-col justify-center h-full relative mx-auto">
       <HelpDialog />
       <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 mx-auto">
-        {t('Configuración')}
+        {t('setup.title')}
       </h1>
       <Button
         size="icon"
@@ -44,7 +44,7 @@ export function SetupPage() {
       </Button>
       <GameSettings />
       <Button className="mt-2 mx-auto min-w-32" onClick={onStartGamePressed}>
-        Jugar!
+        {t('setup.play_btn')}
       </Button>
     </div>
   );
