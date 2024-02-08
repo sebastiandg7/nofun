@@ -17,15 +17,15 @@ export function HomePage() {
 
   const games: GameData[] = [
     {
-      title: 'Spy',
-      description: "Discover the impostor before it's too late.",
+      title: t('games.spy.title'),
+      description: t('games.spy.description'),
       icon: <Icons.Spy className="h-16 w-16 text-black dark:text-white" />,
       link: 'spy',
       commingSoon: false,
     },
     {
-      title: 'Papelito',
-      description: 'Make your team guess as many words as possible.',
+      title: t('games.papelito.title'),
+      description: t('games.papelito.description'),
       icon: (
         <Icons.WalletCards className="h-16 w-16 text-black dark:text-white" />
       ),
@@ -35,8 +35,8 @@ export function HomePage() {
         localStorage.getItem('enablePapelito') === 'true',
     },
     {
-      title: 'Dice',
-      description: 'Roll the dice and take your chances.',
+      title: t('games.dice.title'),
+      description: t('games.dice.description'),
       icon: <Icons.Dice1Icon className="h-16 w-16 text-foreground" />,
       link: 'dice',
       commingSoon:
@@ -44,6 +44,16 @@ export function HomePage() {
         localStorage.getItem('enableDice') === 'true',
     },
   ];
+
+  function onShare() {
+    if (navigator.share) {
+      navigator.share({
+        title: t('share.title'),
+        text: t('share.text'),
+        url: 'https://nofun.sebastiandg.com',
+      });
+    }
+  }
 
   return (
     <main className="flex flex-col items-center justify-center h-full">
@@ -68,7 +78,9 @@ export function HomePage() {
         ))}
       </section>
       <footer className="flex items-center justify-center py-8">
-        <Button>Invite Friends</Button>
+        {navigator.canShare && navigator.canShare() && (
+          <Button onClick={onShare}>{t('shareBtn')}</Button>
+        )}
       </footer>
     </main>
   );
