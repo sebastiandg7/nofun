@@ -1,6 +1,7 @@
 import type { RouteObject } from 'react-router-dom';
 import { HomePage } from './routes/home/home-page';
 import { spyRouter } from '@nofun/client-feature-spy';
+import { papelitoRouter } from '@nofun/client-feature-papelito';
 
 export const mainRouter: RouteObject[] = [
   {
@@ -15,6 +16,7 @@ export const mainRouter: RouteObject[] = [
   {
     path: '/papelito',
     lazy: () => import('./routes/papelito/papelito-page'),
+    children: papelitoRouter,
   },
   {
     path: '/dice',
